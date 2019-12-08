@@ -1,4 +1,4 @@
-R_saleid|itemid|customerid|storeid|time|qty|pricerange|S_saleid|I|C|S|T|Q|P
+R_saleid|R_itemid|R_customerid|R_storeid|R_time|R_qty|R_pricerange|S_saleid|S_I|S_C|S_S|S_T|S_Q|S_P
 309|109|25|82|51|2|supercheap|82506|11450|25|33|93|17|supercheap
 845|84|25|81|25|2|outrageous|82506|11450|25|33|93|17|supercheap
 667|133|39|30|67|26|outrageous|7383|10678|39|99|73|9|moderate
