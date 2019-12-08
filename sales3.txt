@@ -998,18 +998,3 @@ saleid|I|C|S|T|Q|P
 80917|10779|8397|89|73|17|cheap
 95948|12839|8038|66|9|49|outrageous
 98813|6765|1387|17|73|38|cheap
-
-Vagrant.configure("2") do |config|
-  config.vm.box = "centos7"  #box名称
-  config.vm.hostname = "centos7"  #win10系统下的主机名
-  config.vm.synced_folder ".", "d:/dev/centos7",type:"virtualbox"  #开发目录对应dev/CentOS7
-  config.vm.provider "virtualbox" do |vb|
-  vb.memory = "1024"        #定义分配内存大小
-  vb.name = "centos7"  #virtualbox下显示的虚拟主机名
-  end
-  #set auto_update to false, ifyou do NOT want to check the current
-  #additions version when booting this machine
-  config.vbguest.auto_update = false
-  #do NOT download the iso file from a webserver
-  config.vbguest.no_remote = true
-end
