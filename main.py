@@ -153,8 +153,6 @@ def select_func(data):
 # Output: a list of the first operand, the relation operator and the second operand
 def parse_relop(line):
     new_line = re.split('(=|!=|>=|<=|>|<)',line)
-    print(len(new_line))
-    print(new_line)
     return new_line
 
 # The function is used to parse the arithmatic operator and operands
@@ -162,7 +160,6 @@ def parse_relop(line):
 # Output: a list of the first operand, the arithmatic operator and the second operand
 def parse_arithop(line):
     new_line = re.split('(\+|\-|\*|\/)',line)
-    # print(new_line)
     return new_line
 
 # The function is used to arithmatic calculation like +,-,*and/
@@ -248,7 +245,6 @@ def avg_func(data):
     temp[title] = avg
     dbs[data[0].strip()] = list()
     dbs[data[0].strip()].append(temp)
-    print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -276,7 +272,6 @@ def avggroup_func(data):
         for x in arglist:
             temp[x] = g[0][x]
         dbs[data[0].strip()].append(temp)
-        print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -320,7 +315,7 @@ def movavg_func(data):
     itemlist = list()
     for _ in target_db:
         itemlist.append(_[attr])
-    print(itemlist)
+
     res = running_mean(itemlist,window)
     temp = dict()
     title = "movavg("+attr+")"
@@ -328,7 +323,7 @@ def movavg_func(data):
     for _ in res:
         temp[title] = _
         dbs[data[0].strip()].append(temp)
-    print(dbs[data[0].strip()])
+
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -350,7 +345,7 @@ def movsum_func(data):
     for _ in res:
         temp[title] = _
         dbs[data[0].strip()].append(temp)
-    print(dbs[data[0].strip()])
+
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -369,7 +364,7 @@ def sum_func(data):
     temp[title] = sum
     dbs[data[0].strip()] = list()
     dbs[data[0].strip()].append(temp)  
-    print(dbs[data[0].strip()])
+ 
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -396,7 +391,7 @@ def sumgroup_func(data):
         for x in arglist:
             temp[x] = g[0][x]
         dbs[data[0].strip()].append(temp)
-        print(dbs[data[0].strip()])
+
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -413,7 +408,7 @@ def count_func(data):
     temp[title] = cnt
     dbs[data[0].strip()] = list()
     dbs[data[0].strip()].append(temp) 
-    print(dbs[data[0].strip()])
+    # print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -438,7 +433,7 @@ def countgroup_func(data):
         for x in arglist:
             temp[x] = g[0][x]
         dbs[data[0].strip()].append(temp)
-        print(dbs[data[0].strip()])
+        # print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -516,7 +511,7 @@ def join_func(data):
             for k,v in ele.items():
                 temp[colhead[i][k]] = v
         dbs[data[0].strip()].append(temp)
-    print(dbs[data[0].strip()])
+    # print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -528,14 +523,8 @@ def change_column(db1,db2,colhead):
     x = dbs[db1][0].keys()
     y = dbs[db2][0].keys()
     for k in x:
-        if k not in y:
-            colhead[0][k] = k
-        else:
             colhead[0][k] = db1+"_"+k
     for k in y:
-        if k not in x:
-            colhead[1][k] = k
-        else:
             colhead[1][k] = db2+'_'+k
     
 # The function is to sort the given table
@@ -550,7 +539,7 @@ def sort_func(data):
         if _.strip() != '':
             arglist.append(_.strip())
     res_db = sorted(target_db,key = operator.itemgetter(*arglist))
-    print(res_db)
+    # print(res_db)
     dbs[data[0].strip()] = res_db
     e = time.time()
     print(str(e-s))
@@ -564,7 +553,7 @@ def concat_func(data):
     db2 = dbs[data[3].strip()]
     dbs[data[0].strip()] = list()
     dbs[data[0].strip()] = db1+db2
-    print(dbs[data[0].strip()])
+    # print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
     get_Operations(dbs[data[0].strip()],str(e-s),op_file)
@@ -586,7 +575,7 @@ def Hash(data):
         if _[attr] not in h[data[1].strip()][attr].keys():
             h[data[1].strip()][attr][v] = list()
         h[data[1].strip()][attr][v].append(i)
-    print(h[data[1].strip()][attr])
+    # print(h[data[1].strip()][attr])
     e = time.time()
     print(str(e-s))
     op_file.write("The time for add Hash index is "+str(e-s)+"s\n")
@@ -642,7 +631,7 @@ def outputtofile(data):
 # Output: No output.It just parse the command and execute corresponding operations   
 def parse_command(command):
     data = re.split('[,()]|:=',command)
-    print(data)
+    # print(data)
     if data[1].strip() == 'inputfromfile':
         s = data[2].strip()+'.txt'
         dbs[data[0].strip()] = list()
@@ -705,7 +694,7 @@ if __name__ == "__main__":
     commandfile = open(sys.argv[1],'r')
     for command in commandfile.readlines():
         c = re.split('//',command)
-        print(c)
+        # print(c)
         if c[0].strip() != '':  
             parse_command(c[0])
         op_file.write("\n")
