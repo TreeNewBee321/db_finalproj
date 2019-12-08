@@ -22,7 +22,7 @@ T2prime := sort(T1, R1_time, S_C) // sort T1 by R_time, S_C (in that order)
 T3 := movavg(T, qty, 3) // perform the three item moving average of T2prime
 // on column R_qty. This will be as long as R_qty with the three way
 // moving average of 4 8 9 7 being 4 6 7 8
-T4 := movsum(T, qty, 5) // perform the five item moving sum of T2prime
+T4 := movsum(T, R_qty, 5) // perform the five item moving sum of T2prime
 // on column R_qty
 Q1 := select(R, qty = 5) // select * from R where qty=5
 Btree(R, qty) // create an index on R based on column qty
