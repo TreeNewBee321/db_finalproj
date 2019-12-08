@@ -14,7 +14,7 @@ h = dict()
 b = dict()
 
 # A file with all resulting tables and times
-op_file = open("mf3971_dl4222_AllOperations.txt","a+")
+
 
 # This function is used to load data
 # Input: s is the name of input file, db is the table data will be imported in 
@@ -146,7 +146,7 @@ def select_func(data):
     dbs[data[0].strip()] = r
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 
 # This function is used to parse th relation operator and operands
 # Input: an equation string
@@ -217,7 +217,7 @@ def project_func(data):
     dbs[data[0].strip()] = res_db
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
     
 
 # This function is used to group rows from a table by several attributes
@@ -247,7 +247,7 @@ def avg_func(data):
     dbs[data[0].strip()].append(temp)
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # This function is used to calculate averages on a specified attribute , grouped by several columns
 # Input: a list of slices of the command after split
 # Output: a table with averages and the columns mentioned above ,grouped by this columns
@@ -274,7 +274,7 @@ def avggroup_func(data):
         dbs[data[0].strip()].append(temp)
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # This function is used to calculate the moving average for a list
 # Input : l is the given list, N is the size of the window
 # Output: a list of moving averages
@@ -311,6 +311,7 @@ def movavg_func(data):
     s = time.time()
     target_db = dbs[data[2].strip()]
     attr = data[3].strip()
+
     window = int(data[4].strip())
     itemlist = list()
     for _ in target_db:
@@ -326,7 +327,7 @@ def movavg_func(data):
 
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # This function is used to calculate the moving sum on specified attributes
 # Input : a list of slices of the command after split
 # Output:  the moving sum on specified attributes
@@ -348,7 +349,7 @@ def movsum_func(data):
 
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # This function is used to sum the value of element for specified attributes
 # Input : a list of slices of the command after split
 # Output:  the sum of all elements in a column
@@ -367,7 +368,7 @@ def sum_func(data):
  
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # This function is used to sum the value of element grouped by specified attributes
 # Input : a list of slices of the command after split
 # Output:  sum the value of element grouped by specified attributes
@@ -394,7 +395,7 @@ def sumgroup_func(data):
 
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # This function is used to count the number of rows in the table
 # Input: a list of slices of the command after split
 # Output: the number of rows for specified table
@@ -411,7 +412,7 @@ def count_func(data):
     # print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # The function is used to count elements grouped by specified attributes
 # Input: a list of slices of the command after split
 # Output: a table with count varies by value and groupby specified attributes
@@ -436,7 +437,7 @@ def countgroup_func(data):
         # print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # This function is use to join two tables if some of there attributes meet the condition
 # Input: a list of slices of the command after split
 # Output: a new table with new column names after join
@@ -514,7 +515,7 @@ def join_func(data):
     # print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # This function is used in the 'join' operation. 
 # If any two columns with same name exist, both of them should update their names
 # Input: table 1 , table 2, and a list with no element
@@ -543,7 +544,7 @@ def sort_func(data):
     dbs[data[0].strip()] = res_db
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # The function is to concatenate two tables
 # Input: a list of slices of the command after split
 # Output: a list of several dicts, whose length is the sum of the lengths of the two tables
@@ -556,7 +557,7 @@ def concat_func(data):
     # print(dbs[data[0].strip()])
     e = time.time()
     print(str(e-s))
-    get_Operations(dbs[data[0].strip()],str(e-s),op_file)
+    get_Operations(dbs[data[0].strip()],str(e-s),data[0].strip(),op_file)
 # The function is to set up an Hash index for a specified column
 # Input: a list of slices of the command after split
 # Output: a dict of a specified column of a specified table, which the value is a dict
@@ -674,8 +675,9 @@ def parse_command(command):
 # This function is used to print the resulting table for current operation
 # Input: db is the name of the resulting table,t is the running time, f is a file to write in the data
 # Output: all rows in the given table with vertical bar separators
-def get_Operations(db, t, f):
+def get_Operations(db, t, name, f):
     if db:
+        f.write("Tablename:"+name+"\n")
         for i,k in enumerate(db[0].keys()):
             if i > 0:
                 f.write("|")
@@ -692,10 +694,12 @@ def get_Operations(db, t, f):
 
 if __name__ == "__main__":
     commandfile = open(sys.argv[1],'r')
+    op_file = open("mf3971_dl4222_AllOperations.txt","a+")
     for command in commandfile.readlines():
         c = re.split('//',command)
         # print(c)
         if c[0].strip() != '':  
+            op_file.write(c[0]+"\n")
             parse_command(c[0])
         op_file.write("\n")
     op_file.close()
